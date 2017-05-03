@@ -1,0 +1,60 @@
+<!DOCTYPE HTML>
+<html>
+    <head>
+        <title>Accordion & Tab</title>
+        <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+        <link rel="stylesheet" href="https://ajax.googleapis.com/ajax/libs/jqueryui/1.12.1/themes/cupertino/jquery-ui.css">
+        <script src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.12.1/jquery-ui.min.js"></script> 
+        <script type="text/javascript">
+        
+            $(document).ready(function(){
+                $('.datepicker').datepicker();
+                $('form').submit(function(){
+                    $(this).serialize();
+                    var departureDate = $('#from').val();
+                    var returnDate = $('#to').val();
+                    console.log(departureDate);
+                    console.log(returnDate);
+                    if ((Date.parse(departureDate) >= Date.parse(returnDate))){
+                        alert("Your departure date should be later than your return date!");
+                        $('#from').val('');
+                    }
+                    var name = $('#name').val();
+                    console.log(name);
+                    if (name == null || name == "" || name == " "){
+                        alert("Remember to fill in your name!");
+                    }
+                    return false;
+                });
+            });
+        </script>
+        <style type="text/css">
+            #wrapper{
+                background: #d7ebf9;
+                border-radius: 10px;
+                border: 2px solid #2779aa;
+                width: 95%;
+                margin: 0px auto;
+                padding: 10px;
+            }
+            .font{
+                font-family: "Comic Sans MS", cursive, sans-serif;
+            }
+            h2{
+                color: #2779aa;
+            }
+        </style>
+    </head>
+    <body>
+        <div id="wrapper" class="font">
+            <h2>Welcome to the Codingdojo plan-a-Cruise!</h2>
+            <form>
+            <p><input type="text" id="from" class="datepicker" placeholder="From:"></p>
+            <p><input type="text" id="to" class="datepicker" placeholder="To:"></p>
+            <p><input type="text" id="name" placeholder="Name:"></p>
+            <input type="submit" value="Check Dates!">
+            </form>
+        </div> <!--end of wrapper-->
+    </body>
+</html>
